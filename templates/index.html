@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanzas Personales - Flask | El Experto Inexperto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon"  type="image/png" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+    
+</head>
+<body>    
+
+    <div class="container fade-in">
+        <div class="container_logo">
+            <div class="logo_exi">
+                <img width="60px" src="{{ url_for('static', filename='/img/logo.png') }}" alt="Logo Experto Inexperto">
+            </div>
+            <div class="logo-letras">
+                <h1>Finanzas Personales</h1>
+                <p>Programa creado por <b> el experto inexperto </p>
+            </div>        
+        </div>
+        <div class="titulo_form">
+            <img src="{{ url_for('static', filename='/ico/agregar.png') }}" alt="añadir icono">
+            <h2>Nuevo Registro</h2>           
+        </div>
+        
+        <form method="POST" action="/" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="tipo_registro">Tipo de registro:</label>
+                <select name="tipo_registro" id="tipo_registro" required>
+                    <option value="Ingreso">Ingreso</option>
+                    <option value="Gasto">Gasto</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="monto">Monto:</label>                
+                <input type="number" step="1" id="monto" name="monto" required>
+                <p>Nota: Solo utiliza números enteros</p>
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoría:</label>
+                <p>Solo escribe texto, los números serán ignorados.</p>
+
+                <input type="text" id="categoria" name="categoria" autocomplete="off" >
+                
+                    <select name="categoria_desplegable" id="categoria_desplegable">
+                        <option value="">Categorías Preguardadas</option>
+                        {% for categoria in lista_categorias %}
+                            <option value="{{ categoria }}">{{categoria}}</option>
+                        {% endfor %}
+                    </select>             
+                
+                
+           </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+            </div>
+
+            <p>Haz click para descargar el <a href="{{ url_for('download_template') }}">template</a> de ejemplo.</p>
+            <input
+                type="file"
+                name="bulk_file"
+                accept=".csv"
+                class="bulk-upload-input"
+                onchange="this.form.requestSubmit(document.getElementById('bulk_submit'))"
+            >
+            <button type="submit" id="bulk_submit" name="submit_action" value="bulk_upload" formnovalidate hidden></button>
+            <button type="submit" class="btn">Guardar Registro</button>
+        </form>
+
+        <hr>
+
+       
+    </div>
+
+    <div class="container2">
+
+        <section class="filtros">
+            <form method="GET" action="/" class="filtros-form">
+                <div class="fecha-filtro cajasfiltro">
+                    <h2>Fecha</h2> 
+                        <div class="fecha_filtro-container">
+                            <div class="boxcenter">                   
+                                <label for="fecha_inicio">Fecha Inicio:</label>
+                                <input type="date" id="fecha_inicio" name="fecha_inicio" class="filtros-colors-form"> 
+                            </div>
+                            <div class="boxcenter">                
+                                <label for="fecha_fin">Fecha Fin:</label>
+                                <input type="date" id="fecha_fin" name="fecha_fin" class="filtros-colors-form">
+                            </div>
+                        </div> 
+                </div>
+
+                <div class="categoria-filtro  cajasfiltro">
+                    <h2>Categoría</h2>
+                        <div class="cateogira_filtro-container">
+                            <select name="categoria_filtro" id="categoria_filtro_select" class="filtros-colors-form">
+                                <option value="">Selecciona tu Categoría</option>
+                                {% for categoria in lista_categorias %}
+                                    <option value="{{ categoria }}">{{ categoria }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                </div>
+
+
+                <div class="tipomonto-filtro cajasfiltro">
+                    <h2>Tipo de Monto</h2>
+                        <select name="tipo_registro_fil" id="tipo_registro" class="filtros-colors-form">
+                            <option value="">Selecciona Tipo de registro</option>
+                            <option value="Ingreso">Ingreso</option>
+                            <option value="Gasto">Gasto</option>
+                        </select>
+                </div>
+
+                <div class="borrar-filtro cajasfiltro">
+                    <h2><a  class="enlace" href="{{ url_for('index') }}">Eliminar Filtros</a></h2>
+                    <button type="submit" class="btn">Aplicar Filtros</button>
+                </div>
+                
+                
+            </form>                   
+        </section>
+
+        <div class="estadisticas">
+            <h2>Estadísticas</h2>
+            <div> 
+                <div class="caja-estadistica">
+                        <div class="caja"><p class="ingreso"><strong>Ingresos:</strong> <br> {{ total_ingresos }}</p></div>
+                        <div class="caja"><p class="gasto"><strong>Gastos:</strong><br> {{ total_gastos }} </p></div>
+                        <div class="caja"><p class="saldo"><strong>Saldo:</strong> <br>{{ total_ingresos - total_gastos }}</p></div>                        
+                </div>
+            </div>
+
+            <div class="vistageneral-montos">
+                <div class="cajas-dobles fade-in">
+                    
+                    <div id="grafico" class="caja-estadistica-grafico">                    
+                    
+                    </div>
+                </div>
+                
+                <div class="caja-simple fade-in">
+                   
+                    <div id="grafico_lineas">
+                </div>
+                </div>
+            </div>          
+
+
+        </div>
+
+ 
+        <div class="registros-lista">
+            <h2>Últimos Registros</h2>
+            <p>Estos son los últimos registros de tu cuenta. Para descargarlos en un excel haz click <a href="{{ url_for('download_registros') }}">aquí</a> </p>
+            
+
+            {% if registros %}
+            <table class="tabla-registros">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Acción</th>
+                        <th>Tipo</th>
+                        <th>Monto</th>
+                        <th>Categoría</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for registro in registros %}
+                    <tr class="{{ registro.tipo.lower() }}">
+                        <td><strong>{{ loop.revindex }}</strong></td>
+                        <td>
+                            <form method="POST" action="{{ url_for('index') }}">
+                                <input type="hidden" name="id" value="{{ registro.id }}">
+                                <button type="submit" title="Eliminar" class="btn-eliminar">X</button>
+                            </form>
+                        </td>
+                        <td>{{ registro.tipo }}</td>
+                        <td>${{ "%.2f"|format(registro.monto) }}</td>
+                        <td>{{ registro.categoria }}</td>
+                        <td>{{ registro.fecha }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No hay registros para mostrar.</p>
+            {% endif %}
+    </div>
+
+        
+
+
+
+
+</div>
+
+
+
+    <script>
+        var graph = JSON.parse('{{ graph_json | safe }}');            
+         Plotly.newPlot('grafico', graph.data, graph.layout,{
+                displayModeBar: false,      //  Quita la barra superior
+                staticPlot: false,          //  Permite hover, pero no zoom ni desplazamiento
+                responsive: true,           //  Se adapta al tamaño del contenedor
+        });
+
+         var graph1 = JSON.parse('{{ graph_json1 | safe }}');            
+         Plotly.newPlot('grafico_lineas', graph1.data, graph1.layout,{
+                displayModeBar: false,   
+                responsive: true,           
+        });
+    </script>
+
+</body>
+</html>
+

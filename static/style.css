@@ -1,0 +1,516 @@
+
+/*MOBILE*/
+
+
+@media (max-width: 600px){
+   body {
+    width: 100% !important;    
+    height: 100dvh !important;
+    background-color: rgb(255, 0, 0) !important;
+    display: block !important; /* mejor que inline */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+
+   .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 10px !important;
+       
+    
+  }
+
+  .container2 {
+    margin: 0 !important;
+    width: 100%;
+    
+  }
+    
+  .filtros form{     
+    display: block !important;
+    width: 100% !important;
+    
+  }
+   
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*DESKTOP*/
+/* Estilos generales */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+body {
+    font-family: 'Rubik', sans-serif;
+    background-color: #f4f4f4;
+    color: #191919;    
+    display: flex;   
+    margin: 10px 100px 0px 100px !important;
+    padding: 0;
+}
+
+.container_logo{
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.container_logo h1, p {
+    font-size: 25px;  
+    margin: 0;   
+    text-align: left;
+}
+
+.logo-letras{
+    margin-left: 15px;
+    
+
+}
+
+
+.container {
+    max-width: 500px;       
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.titulo_form{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #666262;
+    margin-bottom: 30px;
+    
+      
+}
+.titulo_form img{
+    width: 20px;
+    margin-right: 8px;
+}
+
+.container2 {
+    
+    margin: 0px 0px 0px 20px;
+    width: 100%;
+    height: 400px; 
+    flex: 1;;
+   
+}
+
+.boxcenter{
+    display: flex;
+    justify-content: center !important;    
+    align-items: center;
+   
+    
+}
+
+.borrar-filtro{
+    
+    align-items: center !important;
+    justify-content: center;
+}
+.enlace{    
+    color: rgb(161, 34, 34);
+    font-weight: 600;
+    
+}
+
+.boxcenter label{
+    font-size: 14px;
+    width: 100%;
+    height: auto;
+    margin: 0px 5px 0px 5px;
+    align-items: center !important;
+    
+   
+    
+    
+
+
+}
+  
+
+h1, h2 {
+    text-align: center;
+    color: #191919;
+  
+}
+
+h2{
+    font-size: 30px;  
+}
+
+
+.container p{
+    font-size: 14px;
+    text-align: left;
+
+}
+
+
+p {
+    text-align: center;
+    color: #191919;
+    font-weight: 400;
+}
+
+/* Estilos del formulario */
+.form-group {
+    margin-bottom: 15px;
+    margin-bottom: 30px;
+    
+}
+
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #191919;
+    
+    
+}
+
+input[type="text"], input[type="number"], input[type="date"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family:Rubik ;
+    box-sizing: border-box; /* Para que el padding no afecte el ancho total */
+    
+    /* background-color: #191919; */
+}
+#categoria_desplegable {
+    background-color: #F5C56E !important;
+    border: none;
+    margin-top: 0.6rem;
+    font-weight: 600
+}
+
+#categoria_desplegable option {
+    background-color: white;
+    color: black;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #76f56e;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: Rubik;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.bulk-upload-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #91918F;
+    margin: 12px 0px;
+    box-sizing: border-box;
+}
+
+.btn:hover {
+    background-color: #c5c5c5;
+}
+
+/* Estilos de los filtro */
+
+.filtros form{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    border-bottom: #aaafac solid 2px;
+    padding: 20px;
+}
+
+.filtros-colors-form{
+    background-color: #91918F;
+}
+
+.filtros form h2{
+    font-weight: 600;
+    color: black;
+    font-size: 18px;
+}
+
+.filtros .btn{
+    background-color: #76f56e;
+}
+
+.cajasfiltro{
+    width: auto;
+    height: 92px;
+    margin-left: 20px;
+    align-items: center;
+}
+
+.fecha_filtro-container{
+    display: flex !important;
+    align-items: center !important;
+}
+
+.fecha-filtro .btn{
+    margin-top: 1rem;
+    font-family: Rubik;
+    background-color: #46ff9a;
+    color: black;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.btn-eliminar{
+    background-color: rgba(255, 0, 0, 0.548);
+    color: white;
+    font-weight: 600;
+}
+
+
+
+/* Estilos de la seccion de estadisticas */
+
+.estadisticas h2{
+    font-size: 30px !important;
+}
+
+.vistageneral-montos{
+align-items: end;
+display: flex;
+width: auto;
+padding: 15px 0px 15px 0px;
+background-color: #F5C56E;
+justify-content: space-around;
+border-radius: 8px;
+}
+
+.caja{
+    display: flex;
+    width: 100%;
+    min-height: 90px;
+    align-items: center;
+    justify-content: center;
+ 
+}
+
+.caja p{
+    font-size: 25px;
+    margin: 0;
+    text-align: center;
+}
+
+
+
+
+.caja-simple{
+   
+    padding: 10px;      
+    width: 60%;
+    
+    
+}
+
+.cajas-dobles{
+   padding: 10px;
+   width: 30%;
+     
+    
+}
+
+.caja-estadistica{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-radius: 8px;
+    padding: 20px;
+    box-sizing: border-box;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+}
+
+
+#grafico{
+    border-radius: 8px;    
+    padding: 20px;       
+    width: 100%;
+    height: 400px;
+}
+
+#grafico_lineas{
+    border-radius: 8px;  
+    padding: 20px;      
+    height: 400px;
+   
+    
+    
+   
+}
+
+
+
+
+
+
+/* Estilos de los ultimos registros */
+
+
+
+
+
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 20px 0;
+}
+
+.registros-lista {
+    background: #f9f9f9;
+    border: 1px solid #c9c9c9;
+    padding: 2px;
+    width: auto;
+    border-radius: 4px;
+    font-size: 20px;
+    justify-content: space-around;
+    
+}
+.tabla-registros{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.tabla-registros th{
+    background-color: rgb(31, 31, 31);
+    color: white;
+    padding: 10px;    
+
+}
+
+.tabla-registros tbody{
+    margin-top: 30px;
+    padding: 10px;  
+    font-weight: 400;  
+    
+
+}
+
+
+.registro-item {
+    padding: 10px;    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.registro-item span{
+    font-size: 18px;   
+    width: 200px;
+}
+
+.registro-item .corto{
+    width: 20px;
+}
+
+.registro-item:last-child {
+    border-bottom: none;
+   
+}
+
+/* Clases especificas para Ingresos y Gastos */
+.ingreso {
+    color: rgb(12, 104, 4);
+}
+
+.gasto {
+    color: red;
+}
+
+.saldo{
+    color: rgb(255, 81, 0);
+
+}
+
+.filtroinfo{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.filtroinfo a{
+    background-color: #F5C56E;
+    font-family: Rubik;
+    border: none;
+    font-size: 14px;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;    
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+}
+
+
+.filtroinfo a:hover{
+    background-color: #46ff9a;
+    border-color: #000000;
+    
+   
+}
+
+button{
+    cursor: pointer;
+}
+
+
